@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>register</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <!-- <script src="https://unpkg.com/vue-router@3.5.2/dist/vue-router.js"></script> -->
+
+
+
+</head>
+<style>
+    .right {
+        text-align: right;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <div class="container background-color">
+            <div class="jumbotron text-center mdb-color lighten-2 white-text mx-2 mb-5 indigo-text my-4 font-weight-bold">
+                <h2>BookMyShow</h2>
+            </div>
+        </div>
+
+        <div class="container mt-4 border border-primary">
+            <div class="form-group">
+                
+                <label for="username"><h4>Username</h4></label>
+                <input type="text" class="form-control" id="username" placeholder="username" v-model="username">
+                <label for="username"><h4>Email</h4></label>
+                <input type="text" class="form-control" id="email" placeholder="email" v-model="email">
+                <label><h4>Password</h4></label>
+                <input type="password" class="form-control" id="inputBox" placeholder="password" v-model="password">
+                <br>
+            </div>
+            <button @click="adduser" type="button" class="btn btn-primary">Register</button>
+             <a href="/" @click="adduser" class="btn btn-primary">Register</a> 
+
+        </div>
+        <br><br><br><br><br><br><br>
+    </div>
+    <!-- <footer class="right"><a href='/admin'><b>Admin Login</b></footer>       -->
+
+    <script>
+        console.log("asdfdasf")
+        new Vue({
+            el: '#app',
+            data: {
+                name: "",
+                username: "",
+                password: "",
+                email:""
+            },
+            methods: {
+                adduser: function () {
+                    const fundata = {username: this.username, email:this.email,password: this.password };
+                    fetch('/register', {
+                        method: "POST",
+                        headers: { "content-type": "application/json", },
+                        body: JSON.stringify(fundata),
+                    }).then((response) => response.json())
+
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>
